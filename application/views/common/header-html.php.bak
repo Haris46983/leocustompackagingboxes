@@ -1,0 +1,271 @@
+<?
+if(!isset($meta_title) || $meta_title == ""){
+	$meta_title = $this->site_settings['meta_title'];
+}
+
+if(!isset($meta_keywords) || $meta_keywords == ""){
+	$meta_keywords = $this->site_settings['meta_keywords'];
+}
+
+if(!isset($meta_description) || $meta_description == ""){
+	$meta_description = $this->site_settings['meta_description'];
+}
+
+// echo $meta_title;
+// echo "<br>";
+// echo $meta_keywords;
+// echo "<br>";
+// echo $meta_description;
+
+$page = $this->uri->segment(1);
+
+$home = "";
+$blog = "";
+$doctor = "";
+
+switch ($page) {
+    case "":
+	$home = "current-menu-item page_item";
+	break;
+	case "blog":
+	$blog = "current-menu-item page_item";
+	break;
+	case "doctors-list":
+	$doctor = "current-menu-item page_item";
+	break;
+	default:
+	$home = "";
+	break;
+}
+?>
+<!DOCTYPE html>
+<html lang="en-US"><!--<![endif]-->
+<head>
+    <!-- META TAGS -->
+    <meta charset="UTF-8">
+
+    <!-- Title -->
+    <title><?=$meta_title;?></title>
+
+    <!-- Define a view port to mobile devices to use - telling the browser to assume that
+    the page is as wide as the device (width=device-width)
+     and setting the initial page zoom level to be 1 (initial-scale=1.0) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
+	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    <meta name="description" content="<?=$meta_description;?>">
+    <meta name="keywords" content="<?=$meta_keywords;?>">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="<?=base_url();?>assets/images/favicon-new.png">
+
+    <!-- Google Web Font -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,800,900,300,200" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- bootstrap Style Sheet (caution ! - Do not edit this stylesheet) -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/bootstrap.css" type="text/css" media="all">
+    <!-- Flexslider stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/flexslider.css" type="text/css" media="all">
+    <!-- Animations stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/animations.css" type="text/css" media="all">
+    <!-- Awesome Font stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/font-awesome.css" type="text/css" media="all">
+    <!-- Datepciker stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/datepicker.css" type="text/css" media="all">
+    <!-- Swipebox stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/swipebox.css" type="text/css" media="all">
+    <!-- meanmenu stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/meanmenu.css" type="text/css" media="all">
+	
+	<link rel="stylesheet" href="<?=base_url();?>assets/css/woocommerce.css" type="text/css" media="all">
+    <!-- Include the site main stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/main.css" type="text/css" media="all">
+    <!-- Include the site responsive  stylesheet -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/custom-responsive.css" type="text/css" media="all">
+	
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/custom.css" type="text/css" media="all">
+
+
+    <script type='text/javascript' id='quick-js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery-2.2.3.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/bootstrap.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.flexslider-min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.swipebox.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.isotope.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.appear.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.ui.core.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.ui.datepicker.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.validate.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.form.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.autosize.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.meanmenu.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery.velocity.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery-twitterFetcher.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/respond.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/jquery-migrate-1.2.1.min.js'></script>
+	<script type='text/javascript' src='<?=base_url();?>assets/js/custom.js'></script>
+	
+	<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="<?=base_url();?>assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="<php echo 'http://www.google.com/chromeframe/?redirect=true'; ?>">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="header-top clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?
+				if(!isset($_SESSION['role'])){
+				?>
+				<div class="col-md-12">
+                    <p class="text-right">
+					<small>
+						<a href="<?=base_url('cro-join-us');?>" style="padding-right:25px;"><span>TrialWatch for Sponsors & CROs</span></a>
+						<a href="<?=base_url('site-join-us');?>" style="padding-right:25px;"><span>TrialWatch for Sites</span></a>
+						<!--a href="<?=base_url('sign-in');?>"><span>Sign In</span></a-->
+					</small>
+					</p>
+				</div>
+				<?
+				}
+				elseif(isset($_SESSION['role'])){
+				?>
+					<header id="header" class="patient-header" style="padding:0px; background:transparent;">
+						<nav class="main-menu">
+							<ul class="header-nav clearfix" id="menu-main-menu">
+								<li class="page_item">
+									<a href="<?=base_url('dashboard');?>">Dashboard</a>
+								</li>
+								<li>
+									<a href="#">Settings</a>
+									<ul>
+										<li><a href="<?=base_url('change-password');?>">Change Password</a></li>
+										<li><a href="<?=base_url('my-patient-profile');?>">My Profile</a></li>
+										<li><a href="<?=base_url('sign-out');?>">Sign Out</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+						<div id="responsive-menu-container"></div>
+					</header>
+				<?
+				}
+				?>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<header id="header">
+    <div class="container">
+
+        <!-- Website Logo -->
+        <div class="logo clearfix">
+            <a href="<?=base_url();?>">
+                <img src="<?=base_url();?>assets/images/temp-images/logo-two.png" alt="Medicalpress">
+            </a>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="main-menu">
+            <ul class="header-nav clearfix" id="menu-main-menu">
+			<?
+			$this->load->model('home_model');
+			$first_menu = $this->home_model->get_all_first_menu();
+			// echo "<pre>"; print_r($first_menu); echo "</pre>";
+			
+			foreach($first_menu as $f){
+				$second_menu = $this->home_model->get_second_menu_by_first_menu_id($f['id']);
+				// echo "<pre>"; print_r($second_menu); echo "</pre>";
+				if(!$second_menu){
+				?>
+				<li>
+				   <a href="<?=$f['url'];?>"><?=$f['name'];?></a>
+				</li>
+				<?
+				}
+				elseif($second_menu){
+				?>
+				<li>
+					<a href="<?=$f['url'];?>"><?=$f['name'];?></a>
+					<ul>
+				<?
+				foreach($second_menu as $s){
+				?>
+						<li><a href="<?=$s['url'];?>"><?=$s['name'];?></a></li>
+				<?	
+				}
+				?>
+					</ul>
+				</li>
+				<?
+				}
+			}
+			?>
+                <!--li class="<?=$home;?>">
+                    <a href="<?=base_url();?>">Home</a>
+                </li>
+				<li>
+					<a href="<?=base_url('patient-benefits');?>">Patient</a>
+					<ul>
+						<li>
+							<a href="<?=base_url('patient-benefits').'/get-well-program';?>">Get Well Program</a>
+						</li>
+						<li>
+							<a href="<?=base_url();?>doctors-list?speciality=44&country=&state=&city=">Find Your Doctor</a>
+						</li>
+						<li>
+							<a href="<?=base_url('patient-benefits').'/advantages-for-patients';?>">Advantages For Patients</a>
+						</li>
+						<li>
+							<a href="<?=base_url('patient-benefits').'/testimonials';?>">Testimonials</a>
+						</li>
+						<li>
+							<a href="<?=base_url('patient-benefits').'/patient-frequently-asked-questions';?>">FAQ's</a>
+						</li>
+						<li>
+							<a href="<?=base_url('patient-benefits').'/how-to-join';?>">How to Join</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li class="<?=$doctor;?>">
+                    <a href="<?=base_url();?>doctors-list?speciality=44&country=&state=&city=">Find Best Doctor</a>
+                </li>
+				<li>
+					<a href="<?=base_url('physicians-benefits');?>">Physicians Benefits</a>
+					<ul>
+						<li>
+							<a href="<?=base_url('physicians-benefits').'/benefits-to-join';?>">Benefits to Join</a>
+						</li>
+						<li>
+							<a href="<?=base_url('physicians-benefits').'/doctors-testimonials';?>">Doctors Testimonials</a>
+						</li>
+						<li>
+							<a href="<?=base_url('physicians-benefits').'/proven-program';?>">Proven Program</a>
+						</li>
+						<li>
+							<a href="<?=base_url('physicians-benefits').'/physicians-frequently-asked-questions';?>">FAQs</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li class="<?=$blog;?>">
+                    <a href="<?=base_url('blog');?>">Blog</a>
+                </li-->
+            </ul>
+        </nav>
+        <div id="responsive-menu-container"></div>
+    </div>
+</header>

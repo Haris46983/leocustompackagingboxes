@@ -1,0 +1,20 @@
+<?php
+	class My_Controller extends CI_Controller {
+		function __construct()
+		{
+			parent::__construct();
+			
+			$url = $this->uri->segment(2);
+			// echo $url;
+			//Setting User Pages role-wise
+			$pages_not_for_user = array("users");
+			
+			if(isset($_SESSION['role'])){
+				if($_SESSION['role']=="user"){
+					if(in_array($url,$pages_not_for_user))
+						redirect('home');
+				}
+			}
+		}
+	}
+?>

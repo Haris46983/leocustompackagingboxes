@@ -1,0 +1,54 @@
+<section id="content">
+        <section class="hbox stretch">
+          <section>
+            <section class="vbox">
+              <section class="scrollable padder">
+                <section class="row m-b-md">
+                  <div class="col-sm-6">
+                    <h3 class="m-b-xs text-black">Dashboard</h3>
+                    <small>Welcome back, <? echo $_SESSION['name'];?></small> </div>
+                </section>
+				<div class="row">
+                  <div class="col-md-3 col-sm-6">
+                    <div class="panel b-a">
+                      <div class="panel-heading no-border bg-primary lt text-center" style="background-color:purple;"> <a href="#"> <i class="fa fa fa-3x m-t m-b text-white">Accounts</i> </a> </div>
+                      <div class="padder-v text-center clearfix">
+                        <div class="col-xs-12 b-r">
+                          <div class="h3 font-bold"><?=$total;?></div>
+                          <small class="text-muted">Total</small>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                    <div class="panel b-a">
+                      <div class="panel-heading no-border bg-info lter text-center" style="background-color:indigo;"> <a href="#"> <i class="fa fa fa-3x m-t m-b text-white">Users</i> </a> </div>
+                      <div class="padder-v text-center clearfix">
+                        <div class="col-xs-12 b-r">
+                          <div class="h3 font-bold"><?=$total_users;?></div>
+                          <small class="text-muted">Total</small>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+				  <div class="col-md-3 col-sm-6">
+                    <div class="panel b-a">
+                      <div class="panel-heading no-border bg-info lter text-center" style="background-color:darkblue;"> <a href="#"> <i class="fa fa fa-3x m-t m-b text-white">Admins</i> </a> </div>
+                      <div class="padder-v text-center clearfix">
+                        <div class="col-xs-12 b-r">
+                          <div class="h3 font-bold"><?=$total_admin;?></div>
+                          <small class="text-muted">Total</small>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+				
+			  </section>
+            </section>
+          </section>
+        </section>
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> </section>
+    </section>
+  </section>
+</section>

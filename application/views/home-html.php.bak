@@ -1,0 +1,128 @@
+<?
+$banners = $this->home_model->get_all_banners();
+// echo "<pre>"; print_r($banners); echo "</pre>";
+?>
+<!--slider-->
+<div class="home-slider clearfix">
+    <div class="flexslider">
+        <ul class="slides">
+			<?
+			foreach($banners as $b){
+			?>
+            <!--slide start-->
+            <li class="flex-active-slide">
+                <img src="<?=base_url();?>assets/images/<?=$b['image'];?>" alt="<?=$b['heading'];?>" draggable="false">
+                <div class="content-wrapper clearfix">
+                    <div class="container">
+                        <div class="slide-content clearfix">
+                            <h1><span style="color:#fff;"><?=$b['heading'];?></span></h1>
+                            <p style="color:#fff;"><?=$b['text'];?></p>
+                            <a class="slider-button" href="<?=$b['link'];?>">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!--slide end-->
+			<?
+			}
+			?>
+            
+        </ul>
+        <!--directional nav-->
+        <ul class="flex-direction-nav">
+            <li><a class="flex-prev" href="#">Previous</a></li>
+            <li><a class="flex-next" href="#">Next</a></li></ul>
+    </div>
+</div>
+
+<section class="home-first-section">
+	<div class="container">
+		<!--div class="row fadeInLeft animated"-->
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="text-center" style="color:#fff; padding:20px 0px;">Connecting People with Clinical Trials</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-4 hfs-four-sections hfsfs-1">
+				<i class="fa fa-stethoscope"></i>
+				<h2><?=$home['tri_column_1_heading'];?></h2>
+				<p><?=$home['tri_column_1_text'];?></p>
+				<div class="hfs-button-div text-center">
+					<a href="<?=$home['tri_column_1_link'];?>" class="read-more">Click Here</a>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4 hfs-four-sections hfsfs-2">
+				<i class="fa fa-medkit"></i>
+				<h2><?=$home['tri_column_2_heading'];?></h2>
+				<p><?=$home['tri_column_2_text'];?></p>
+				<div class="hfs-button-div text-center">
+					<a href="<?=$home['tri_column_2_link'];?>" class="read-more">Click Here</a>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4 hfs-four-sections hfsfs-3">
+				<i class="fa fa-check-circle-o"></i>
+				<h2><?=$home['tri_column_3_heading'];?></h2>
+				<p><?=$home['tri_column_3_text'];?></p>
+				<div class="hfs-button-div text-center">
+					<a href="<?=$home['tri_column_3_link'];?>" class="read-more">Click Here</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="home-blog text-center animated fadeInLeft clearfix home-second-section">
+	<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="text-center" style="color:#fff; padding-bottom:25px;"><?=$home['section_1_heading'];?></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 text-left" style="margin-bottom:2em;">
+			<div style="color:#fff;">
+			<?=$home['section_1_text'];?>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<img src="<?=base_url();?>assets/images/<?=$home['section_1_image'];?>" alt="<?=$home['section_1_image'];?>" class="img-responsive center-block">
+		</div>
+	</div>
+	</div>
+</div>
+
+<!--blog posts section-->
+<div class="home-blog text-center clearfix" style="background-color:#65b450;">
+    <div class="container">
+        <div class="slogan-section animated fadeInUp clearfix">
+            <h2><span style="color:#fff;">Top Headlines</span></h2>
+        </div>
+        <div class="row">
+		<?
+		foreach($recent_blogs as $r){
+		?>
+            <div class="col-md-4" style="margin-bottom:4em;">
+                <article class="common-blog-post animated fadeInRight clearfix">
+                    <figure>
+                        <a href="#" title="<?=$r['title'];?>">
+                            <img src="<?=base_url();?>assets/images/<?=$r['image'];?>"  alt="<?=$r['title'];?>" />
+                        </a>
+                    </figure>
+                    <div class="text-content clearfix">
+                        <h5><a href="#"><?=$r['title'];?></a></h5>
+                        <div class="entry-meta">
+                            <span><?=date('d M, Y',strtotime($r['date']));?></span>, by <a href="#" title="Posts by <?=$r['author'];?>"><?=$r['author'];?></a>
+                        </div>
+                        <div class="for-border"></div>
+                        <?=substr($r['text'],0,600);?>...
+                    </div>
+                </article>
+                <a class="read-more orange" href="#">Read More</a>
+            </div>
+		<?
+		}
+		?>
+        </div>
+    </div>
+</div>

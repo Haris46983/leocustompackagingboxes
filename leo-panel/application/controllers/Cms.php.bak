@@ -1,0 +1,99 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ 
+// class Cms extends CI_Controller {
+class Cms extends CI_Controller {
+ 
+	function __construct()
+	{
+		parent::__construct();
+	 
+		/* Standard Libraries of codeigniter are required */
+		$this->load->database();
+		$this->load->helper('url');
+		/* ------------------ */ 
+		 
+		$this->load->library('grocery_CRUD');
+	 
+	}
+ 
+	function _example_output($output = null)
+	{
+		$this->load->template('our_template.php',$output);    
+		// $this->load->view('our_template.php',$output);    
+	}
+	
+	public function users()
+	{
+		$crud = new grocery_CRUD();
+		
+		// $crud->set_theme('datatables');
+		
+		$crud->set_table('user_accounts');
+		
+		$crud->set_subject('Users');
+		
+		$crud->set_field_upload('image','assets/uploads/');
+		
+		$crud->where('user_accounts.id != 1');
+		
+		$crud->unset_columns('password');
+		
+		$crud->unset_fields('insert_datetime','insert_by','update_datetime','update_by');
+		
+		$crud->change_field_type('password','password');
+		
+		$crud->set_relation('insert_by','user_accounts','name');
+		$crud->set_relation('update_by','user_accounts','name');
+		
+		$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+		
+		$crud->callback_before_update(array($this,'edit_encrypt_password_callback'));
+		
+		$crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
+		
+		$crud->unique_fields(array('username'));
+		
+		$output = $crud->render();
+		 
+		$this->_example_output($output);        
+	}
+	
+	function encrypt_password_callback($post_array, $primary_key = null)
+	{
+		$check = preg_match('/^[a-f0-9]{32}$/', $post_array['password']);
+		if($check == '0')
+			$post_array['password'] = md5($post_array['password']);
+		else
+			$post_array['password'] = $post_array['password'];
+		
+		$post_array['insert_datetime'] = date('Y-m-d H:i:s');
+		$post_array['insert_by'] = $_SESSION['id'];
+		
+		return $post_array;
+	}
+	
+	function edit_encrypt_password_callback($post_array, $primary_key = null)
+	{
+		$check = preg_match('/^[a-f0-9]{32}$/', $post_array['password']);
+		if($check == '0')
+			$post_array['password'] = md5($post_array['password']);
+		else
+			$post_array['password'] = $post_array['password'];
+		
+		$post_array['update_datetime'] = date('Y-m-d H:i:s');
+		$post_array['update_by'] = $_SESSION['id'];
+		
+		return $post_array;
+	}
+	
+	function decrypt_password_callback($value)
+	{
+		// $this->load->library('encrypt');
+		
+		// $key = 'super-secret-key';
+		// $decrypted_password = $this->encrypt->decode($value, $key);
+		$decrypted_password = $value;
+		return "<input type='password' name='password' value='$decrypted_password' />";
+	}
+	
+}

@@ -1,0 +1,77 @@
+<?
+class Home extends My_Controller{
+	private $key = 'ubqari123s';
+	
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model(array('home_model'));
+		$this->load->database();
+	}
+	
+	public function index(){
+		
+		if(!isset($_SESSION['role'])){
+			redirect('login');
+			exit;
+		}
+		if(isset($_SESSION['role']) && $_SESSION['role']=="admin"){
+			
+			$data['total'] = $this->home_model->get_totals();
+			$data['total_users'] = $this->home_model->get_total_users();
+			$data['total_admin'] = $this->home_model->get_total_admins();
+			$this->load->template('home-html',$data);
+		
+		} // admin home ends here
+		elseif(isset($_SESSION['role']) && $_SESSION['role']=="user"){
+			
+			$this->load->template('user-home-html');
+		
+		} // admin home ends here
+	}
+	
+	function user_login(){
+		if(count($_POST)>0){
+			if(isset($_POST['key']) && $_POST['key'] == $this->key){
+				// echo "<pre>"; print_r($_POST); echo "</pre>";
+				// $result = json_encode($_POST);
+				
+				$this->form_validation->set_rules('username', 'Username', 'required');
+				$this->form_validation->set_rules('password', 'Password', 'required');
+				if ($this->form_validation->run() == FALSE)
+				{
+					$result['status'] = 'failed';
+					$result['message'] = validation_errors();
+					echo json_encode($result);
+				}
+				else{
+					$username = $this->input->post('username');
+					$password = $this->input->post('password');
+					$password = md5($password);
+					
+					$query = $this->home_model->validate($username,$password);
+					
+					if(!$query){
+						$result['status'] = 'failed';
+						$result['message'] = 'Invalid Username or Password';
+						echo json_encode($result);
+					}
+					else{
+						$result['status'] = 'success';
+						$result['user_id'] = $query[0]['id'];
+						$result['user_name'] = $query[0]['name'];
+						echo json_encode($result);
+					}
+				}
+			}
+			else{
+				echo "Unauthorized";
+			}
+		}
+		else{
+			show_404();
+		}
+	}
+	
+}
+?>
