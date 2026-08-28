@@ -69,7 +69,7 @@ main.city-page {
     font-weight: 800;
     letter-spacing: .04em;
     line-height: 1.25;
-    text-transform: uppercase;
+    /* text-transform: lowercase; */
 }
 
 .city-button {
@@ -224,7 +224,7 @@ main.city-page {
 
 .city-hero__benefit i {
     color: var(--city-gold);
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .city-hero__actions {
@@ -1194,24 +1194,35 @@ main.city-page {
                 </div>
             </div>
 
-            <aside class="city-service-badge" aria-label="Service area">
-                <i class="fas fa-map-marker-alt"></i>
-                <span class="city-service-badge__eyebrow">Proudly serving</span>
-                <span class="city-service-badge__city"><?=$city_name;?></span>
-                <span class="city-service-badge__copy">&amp; surrounding areas</span>
-            </aside>
+           <aside class="city-service-badge" aria-label="Service area">
+    <div class="city-service-badge__header">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Serving</span>
+    </div>
+    <div class="city-service-badge__city"><?=$city_name;?></div>
+    <div class="city-service-badge__copy">&amp; Surrounding Areas</div>
+</aside>
         </div>
     </section>
 
     <div class="city-shell city-content">
-        <!-- 2. AI Summary -->
-        <section class="city-ai-summary city-card">
-            <span class="city-ai-summary__icon"><i class="fa-solid fa-robot"></i></span>
-            <div>
-                <span class="city-ai-summary__title">AI SUMMARY</span>
-                <p>Leo Custom Packaging Boxes offers premium quality custom boxes for businesses in <?=$city_name;?>. We provide low MOQ, fast turnaround, free design support, and nationwide shipping. Perfect packaging to protect your products and elevate your brand.</p>
-            </div>
-        </section>
+
+        <!-- New AI Code  -->
+<section class="city-ai-summary city-card" style="display: flex; align-items: center; gap: 20px; padding: 14px 20px; background: #fbfdff; border: 1px solid #e5eaf1; border-radius: 8px;">
+    <!-- Left: Robot Icon + AI SUMMARY + Vertical Divider -->
+    <div style="display: flex; align-items: center; gap: 12px; border-right: 1px solid #e2e8f0; padding-right: 20px; flex-shrink: 0;">
+        <i class="fa-solid fa-bolt" style="font-size: 24px; color: #0c2d5a;"></i>
+        <span style="color: #071b3a; font-size: 13px; font-weight: 800; letter-spacing: 0.03em;">AI SUMMARY</span>
+    </div>
+
+    <!-- Right: 3 Lines of Text -->
+    <div style="color: #3b4b66; font-size: 12.5px; line-height: 1.55; font-weight: 500;">
+        Leo Custom Packaging Boxes offers premium quality custom boxes for businesses in <?=$city_name;?>.
+       We provide low MOQ, fast turnaround, free design support and nationwide shipping.
+        Perfect packaging to protect your products and elevate your brand.
+    </div>
+</section>
+
 
         <!-- 3. 3-Column Overview Row -->
         <section class="city-overview" aria-label="Overview of <?=$city_name;?>">
